@@ -35,7 +35,7 @@ namespace AthleteTracker.Controllers
        _db.SaveChanges();
        if (SponsorId != 0)
         {
-          _db.SponsorAthlete.Add(new SponsorAthlete() { SponsorId = SponsorId, AthleteId = athlete.AthleteId });
+          _db.AthleteSponsor.Add(new AthleteSponsor() { SponsorId = SponsorId, AthleteId = athlete.AthleteId });
           _db.SaveChanges();
         }
       return RedirectToAction("Index");
@@ -62,7 +62,7 @@ namespace AthleteTracker.Controllers
     {
       if (SponsorId != 0)
       {
-        _db.SponsorAthlete.Add(new SponsorAthlete() { SponsorId = SponsorId, AthleteId = athlete.AthleteId });
+        _db.AthleteSponsor.Add(new AthleteSponsor() { SponsorId = SponsorId, AthleteId = athlete.AthleteId });
       }
       _db.Entry(athlete).State = EntityState.Modified;
       _db.SaveChanges();
@@ -79,7 +79,7 @@ namespace AthleteTracker.Controllers
     {
       if (SponsorId != 0)
       {
-        _db.SponsorAthlete.Add(new SponsorAthlete() { SponsorId = SponsorId, AthleteId = athlete.AthleteId });
+        _db.AthleteSponsor.Add(new AthleteSponsor() { SponsorId = SponsorId, AthleteId = athlete.AthleteId });
         _db.SaveChanges();
       } 
       return RedirectToAction("Index");
@@ -103,8 +103,8 @@ namespace AthleteTracker.Controllers
     [HttpPost]
 public ActionResult DeleteSponsor(int joinId)
 {
-    var joinEntry = _db.SponsorAthlete.FirstOrDefault(entry => entry.SponsorAthleteId == joinId);
-    _db.SponsorAthlete.Remove(joinEntry);
+    var joinEntry = _db.AthleteSponsor.FirstOrDefault(entry => entry.AthleteSponsorId == joinId);
+    _db.AthleteSponsor.Remove(joinEntry);
     _db.SaveChanges();
     return RedirectToAction("Index");
 } 

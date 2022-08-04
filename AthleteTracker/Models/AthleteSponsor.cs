@@ -1,6 +1,6 @@
 namespace AthleteTracker.Models
 {
-  public class SponsorAthlete
+  public class AthleteSponsor
     {       
         public int AthleteSponsorId { get; set; }
         public int AthleteId { get; set; }
