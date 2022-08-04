@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AthleteTracker.Models.Sport
+
+<div class="container">
+  <div class="jumbotron text-center">
+
+<h2>Edit</h2>
+
+<h4>Edit this sport: @Html.DisplayFor(model => model.Description)</h4>
+  </div>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.SportId)
+
+  @Html.LabelFor(model => model.Description)
+  @Html.EditorFor(model => model.Description)
+
+  <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>
+</div>

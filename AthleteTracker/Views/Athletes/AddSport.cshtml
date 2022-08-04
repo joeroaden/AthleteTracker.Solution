@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AthleteTracker.Models.Athlete
+
+
+<h2>Add a sport</h2>
+
+<h4>Add a sport to this Athlete: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.AthleteId)
+
+    @Html.Label("Select sport")
+    @Html.DropDownList("SportId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

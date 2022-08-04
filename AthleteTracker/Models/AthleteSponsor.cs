@@ -7,5 +7,6 @@ namespace AthleteTracker.Models
         public int SponsorId { get; set; }
         public virtual Athlete Athlete { get; set; }
         public virtual Sponsor Sponsor { get; set; }
+        public virtual Sport Sport { get; set; }
     }
 }

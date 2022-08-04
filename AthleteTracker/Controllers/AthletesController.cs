@@ -25,17 +25,20 @@ namespace AthleteTracker.Controllers
     public ActionResult Create()
     {
       ViewBag.SponsorId = new SelectList(_db.Sponsors, "SponsorId", "Name");
+      ViewBag.SportId = new SelectList(_db.Sports, "SportId", "Description");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Athlete athlete, int SponsorId)
+    public ActionResult Create(Athlete athlete, int SponsorId, int SportId)
     {
        _db.Athletes.Add(athlete);
        _db.SaveChanges();
        if (SponsorId != 0)
         {
           _db.AthleteSponsor.Add(new AthleteSponsor() { SponsorId = SponsorId, AthleteId = athlete.AthleteId });
+          _db.SaveChanges();
+          _db.AthleteSport.Add(new AthleteSport() { SportId = SportId, AthleteId = athlete.AthleteId });
           _db.SaveChanges();
         }
       return RedirectToAction("Index");
@@ -46,6 +49,8 @@ namespace AthleteTracker.Controllers
       var thisAthlete = _db.Athletes
           .Include(athlete => athlete.JoinEntities)
           .ThenInclude(join => join.Sponsor)
+          .Include(athlete => athlete.JoinEntities)
+          .ThenInclude(join => join.Sport)
           .FirstOrDefault(athlete => athlete.AthleteId == id);
       return View(thisAthlete);
     }
@@ -105,6 +110,14 @@ public ActionResult DeleteSponsor(int joinId)
 {
     var joinEntry = _db.AthleteSponsor.FirstOrDefault(entry => entry.AthleteSponsorId == joinId);
     _db.AthleteSponsor.Remove(joinEntry);
+    _db.SaveChanges();
+    return RedirectToAction("Index");
+} 
+[HttpPost]
+public ActionResult DeleteSport(int joinId)
+{
+    var joinEntry = _db.AthleteSport.FirstOrDefault(entry => entry.AthleteSportId == joinId);
+    _db.AthleteSport.Remove(joinEntry);
     _db.SaveChanges();
     return RedirectToAction("Index");
 } 
