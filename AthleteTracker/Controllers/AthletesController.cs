@@ -59,15 +59,17 @@ namespace AthleteTracker.Controllers
     {
       var thisAthlete = _db.Athletes.FirstOrDefault(athletes => athletes.AthleteId == id);
       ViewBag.SponsorId = new SelectList(_db.Sponsors, "SponsorId", "Name");
+      ViewBag.SportId = new SelectList(_db.Sports, "SportId", "Description");
       return View(thisAthlete);
     }
 
      [HttpPost]
-    public ActionResult Edit(Athlete athlete, int SponsorId)
+    public ActionResult Edit(Athlete athlete, int SponsorId, int SportId)
     {
       if (SponsorId != 0)
       {
         _db.AthleteSponsor.Add(new AthleteSponsor() { SponsorId = SponsorId, AthleteId = athlete.AthleteId });
+         _db.AthleteSport.Add(new AthleteSport() { SportId = SportId, AthleteId = athlete.AthleteId });
       }
       _db.Entry(athlete).State = EntityState.Modified;
       _db.SaveChanges();

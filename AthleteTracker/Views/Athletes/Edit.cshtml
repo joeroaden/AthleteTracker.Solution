@@ -3,6 +3,7 @@
 }
 
 @model AthleteTracker.Models.Athlete
+@using static AthleteTracker.Models.Sport
 
 <h2>Edit</h2>
 
@@ -17,6 +18,9 @@
 
     @Html.Label("Select sponsor")
     @Html.DropDownList("SponsorId")
+
+    @Html.Label("Select sport")
+    @Html.DropDownList("SportId")
 
     @Html.Label("Date went pro")
     @Html.TextBoxFor(model => model.Date, new { type="date"})
