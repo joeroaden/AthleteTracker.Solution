@@ -18,6 +18,9 @@
     @Html.Label("Select sponsor")
     @Html.DropDownList("SponsorId")
 
+    @Html.Label("Date went pro")
+    @Html.TextBoxFor(model => model.Date, new { type="date"})
+
     <input type="submit" value="Save" />
 }
 <p>@Html.ActionLink("Add a Sponsor", "AddSponsor", new { id = Model.AthleteId })</p>
