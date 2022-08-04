@@ -6,13 +6,13 @@ namespace AthleteTracker.Models
   {
     public Sponsor()
     {
-      this.JoinEntities = new HashSet<SponsorAthlete>();
+      this.JoinEntities = new HashSet<AthleteSponsor>();
       
     }
 
     public int SponsorId { get; set; }
     public string Name { get; set; }
-    public virtual ICollection<SponsorAthlete> JoinEntities { get; set; }
+    public virtual ICollection<AthleteSponsor> JoinEntities { get; set; }
     
   }
 }

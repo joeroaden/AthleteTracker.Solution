@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AthleteTracker.Models.Sponsor
+
+<div class="container">
+  <div class="jumbotron text-center">
+    <h4>Add a new Sponsor</h4>
+  </div>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  <input type="submit" value="Add new sponsor" class="btn btn-default"/>
+}
+<p>@Html.ActionLink("Show all sponsors", "Index")</p>
+</div>

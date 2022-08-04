@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AthleteTracker.Models.Sponsor;
+<div class="container">
+  <div class="jumbotron text-center">
+<h2>Sponsor Details</h2>
+  </div>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This sponsor does not contain any atheletes</p>
+}
+else 
+{
+  <h4>Athletes the sponsor contains:</h4>
+  <ul>
+    @foreach (var join in Model.JoinEntities)
+    {
+      <li>@join.Athlete.Name</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add new athelete", "Create", "Athletes")</p>
+<p>@Html.ActionLink("Edit Sponsor", "Edit", new { id = Model.SponsorId }) </p>
+<p>@Html.ActionLink("Delete Sponsor", "Delete", new { id = Model.SponsorId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>
+</div>

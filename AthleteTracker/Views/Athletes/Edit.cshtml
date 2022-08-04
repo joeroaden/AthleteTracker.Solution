@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AthleteTracker.Models.Athlete
+
+<h2>Edit</h2>
+
+<h4>Edit this athlete: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.AthleteId)
+
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+
+    @Html.Label("Select sponsor")
+    @Html.DropDownList("SponsorId")
+
+    <input type="submit" value="Save" />
+}
+<p>@Html.ActionLink("Add a Sponsor", "AddSponsor", new { id = Model.AthleteId })</p>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

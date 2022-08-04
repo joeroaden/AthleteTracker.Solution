@@ -1,0 +1,40 @@
+@{
+  Layout = "_Layout";
+}
+
+@model AthleteTracker.Models.Athlete
+
+<h2>Athlete Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This athlete does not belong to any sponsors</p>
+}
+else
+{
+  <h4>Sponsors the athlete belongs to:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Sponsor.Class</li>
+  }
+  </ul>
+  <h3>@Html.DisplayNameFor(model => model.Date): @Html.DisplayFor(model => model.Date)</h3>
+}
+ <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+
+    @using (Html.BeginForm("DeleteSponsor", "Athletes"))
+    {
+      @Html.Hidden("joinId", @join.SponsorAthleteId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Athlete", "Edit", new { id = Model.AthleteId })</p>
+<p>@Html.ActionLink("Delete Athlete", "Delete", new { id = Model.AthleteId })</p>

@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@using AthleteTracker.Models;
+
+<div class="container">
+  <div class="jumbotron text-center">
+    <h2>Sponsors</h2>
+  </div>
+  @if (@Model.Count == 0)
+  {
+    <h3>No sponsors have been added yet.</h3>
+  }
+
+  <ul>
+    @foreach(Sponsor sponsor in Model)
+    {
+      <li>@Html.ActionLink($"{sponsor.Name}", "Details", new { id = sponsor.SponsorId })</li>
+    }
+  </ul>
+
+  <p>@Html.ActionLink("Add new sponsor", "Create")</p>
+  <p>@Html.ActionLink("Home", "Index", "Home")</p>
+</div>

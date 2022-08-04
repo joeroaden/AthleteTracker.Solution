@@ -7,7 +7,7 @@ namespace AthleteTracker.Models
     {
         public Athlete()
         {
-            this.JoinEntities = new HashSet<SponsorAthlete>();
+            this.JoinEntities = new HashSet<AthleteSponsor>();
         }
 
         public int AthleteId { get; set; }
@@ -15,6 +15,6 @@ namespace AthleteTracker.Models
         [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
 
-        public virtual ICollection<SponsorAthlete> JoinEntities { get;}
+        public virtual ICollection<AthleteSponsor> JoinEntities { get;}
     }
 }
